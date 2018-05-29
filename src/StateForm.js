@@ -1,28 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { load as loadAccount } from './store/account.js'
-
-const data = {
-  firstName: 'Georgi',
-  lastName: 'Mumdzhiev',
-  userName: 'pandamastr',
-  password: '123456',
-  age: '27',
-  sex: 'male',
-  employed: false,
-  bio: 'Some small description'
-}
 
 let StateForm = props => {
-  const { handleSubmit, load, pristine, reset, submitting } = props
+  const { handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <button type="button" onClick={() => load(data)}>
-          Load Account
-        </button>
-      </div>
       <div>
         <label>First Name</label>
         <div>
@@ -117,15 +100,13 @@ let StateForm = props => {
 
 
 StateForm = reduxForm({
-  form: 'State'
+  form: 'profile'
 })(StateForm)
 
+const mapStateToProps = (state) => ({
+  initialValues: state.account.data
+})
 
-StateForm = connect(
-  state => ({
-    initialValues: state.account.data
-  }),
-  { load: loadAccount }
-)(StateForm)
+StateForm = connect(mapStateToProps)(StateForm)
 
 export default StateForm
