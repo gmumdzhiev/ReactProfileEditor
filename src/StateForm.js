@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { load as loadAccount } from './account.js'
+import { load as loadAccount } from './store/account.js'
 
 const data = {
   firstName: 'Georgi',
