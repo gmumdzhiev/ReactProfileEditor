@@ -40,6 +40,17 @@ let StateForm = props => {
         </div>
       </div>
       <div>
+        <label>Password</label>
+        <div>
+          <Field
+            name="password"
+            component="input"
+            type="password"
+            placeholder="password"
+          />
+        </div>
+      </div>
+      <div>
         <label>Age</label>
         <div>
           <Field name="age" component="input" type="number" placeholder="Age" />
@@ -104,7 +115,7 @@ StateForm = reduxForm({
 })(StateForm)
 
 const mapStateToProps = (state) => ({
-  initialValues: state.account.data
+  initialValues: state.account,
 })
 
 StateForm = connect(mapStateToProps)(StateForm)
