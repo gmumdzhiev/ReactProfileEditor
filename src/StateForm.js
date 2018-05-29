@@ -1,11 +1,13 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {Field, reduxForm} from 'redux-form'
-import {load as loadAccount} from './account.js'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { load as loadAccount } from './account.js'
 
 const data = {
   firstName: 'Georgi',
   lastName: 'Mumdzhiev',
+  userName: 'pandamastr',
+  password: '123456',
   age: '27',
   sex: 'male',
   employed: false,
@@ -44,6 +46,17 @@ let StateForm = props => {
         </div>
       </div>
       <div>
+        <label>Username</label>
+        <div>
+          <Field
+            name="userName"
+            component="input"
+            type="text"
+            placeholder="User Name"
+          />
+        </div>
+      </div>
+      <div>
         <label>Age</label>
         <div>
           <Field name="age" component="input" type="number" placeholder="Age" />
@@ -72,7 +85,7 @@ let StateForm = props => {
           </label>
         </div>
       </div>
-     
+
       <div>
         <label htmlFor="employed">Employed</label>
         <div>
@@ -104,15 +117,15 @@ let StateForm = props => {
 
 
 StateForm = reduxForm({
-form: 'State' 
+  form: 'State'
 })(StateForm)
 
 
 StateForm = connect(
   state => ({
-    initialValues: state.account.data 
+    initialValues: state.account.data
   }),
-  { load: loadAccount } 
+  { load: loadAccount }
 )(StateForm)
 
 export default StateForm
